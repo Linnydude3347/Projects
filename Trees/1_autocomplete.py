@@ -22,7 +22,7 @@ class Node:
         # Determine if letter is already a child node
         next_node = self.__has_letter_node(node.letter[0])
         # If there is no child node for that letter
-        if next_node == None:
+        if next_node is None:
             # We need to create a new node with the new letter
             new_node = Node(node.letter[0])
             # Because there is no child, we increment the count by 1
