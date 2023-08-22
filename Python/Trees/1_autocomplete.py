@@ -47,9 +47,9 @@ class Node:
     def has_nodes(self) -> bool:
         return self.nodes != []
 
-    def __str__(self, level=0) -> str:
+    def __str__(self, level: int=0) -> str:
         # Martijn Pieters: https://stackoverflow.com/a/20242504/8968906
-        ret = "\t" * level + repr(self.letter) + str(self.count) + "\n"
+        ret = "\t" * level + f"{self.letter}:{self.count}" + "\n"
         for child in self.nodes:
             ret += child.__str__(level + 1)
         return ret
@@ -63,10 +63,11 @@ class AutoCompleteTree:
     def __init__(self) -> None:
         self.roots = [ Node(c) for c in string.ascii_lowercase ]
 
-    def get_root_letter_node(self, letter: str) -> Node:
+    def get_root_letter_node(self, letter: str) -> Node | None:
         for node in self.roots:
             if node.letter == letter:
                 return node
+        return None
     
     def print_tree(self) -> None:
         for root in self.roots:
