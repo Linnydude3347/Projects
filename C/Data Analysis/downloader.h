@@ -49,7 +49,7 @@ void DownloadData(char* url) {
     curl = curl_easy_init();
     if (!curl) {
         printf("Error in DownloadData.\n");
-        exit(0);
+        exit(1);
     }
 
     file = fopen(DOWNLOAD_PATH, "wb");
@@ -57,6 +57,7 @@ void DownloadData(char* url) {
     curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteData);
     curl_easy_setopt(curl, CURLOPT_WRITEDATA, file);
     result = curl_easy_perform(curl);
+    //fprintf(file, "\n");
     curl_easy_cleanup(curl);
     fclose(file);
 
