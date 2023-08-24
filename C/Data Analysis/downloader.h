@@ -41,7 +41,7 @@ size_t WriteData(void* ptr, size_t size, size_t n, FILE* stream) {
     return written;
 }
 
-void DownloadData(char* url) {
+void DownloadData(char* url, int append_mode) {
     CURL* curl;
     FILE* file;
     CURLcode result;
@@ -52,12 +52,18 @@ void DownloadData(char* url) {
         exit(1);
     }
 
-    file = fopen(DOWNLOAD_PATH, "wb");
+    if (append_mode) {
+        file = fopen(DOWNLOAD_PATH, "a+");
+    } else {
+        file = fopen(DOWNLOAD_PATH, "wb");
+    }
     curl_easy_setopt(curl, CURLOPT_URL, url);
     curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteData);
     curl_easy_setopt(curl, CURLOPT_WRITEDATA, file);
     result = curl_easy_perform(curl);
-    //fprintf(file, "\n");
+    if (append_mode) {
+        fprintf(file, "\n");
+    }
     curl_easy_cleanup(curl);
     fclose(file);
 
