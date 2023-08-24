@@ -12,8 +12,6 @@
 
 int main(int argc, char** argv) {
 
-    /*
-
     // Code for one singular query
 
     char* result = (char*)malloc(256);
@@ -22,10 +20,11 @@ int main(int argc, char** argv) {
         exit(1);
     }
     DownloadData(result, 0);
-    */
+    
 
     // Code for multiple queries
 
+    /*
     int queries = 5;
     char tickers[queries][3];
     char from[11];
@@ -53,6 +52,8 @@ int main(int argc, char** argv) {
         }
         DownloadData(result, 1);
     }
+
+    */
 
     return 0;
 
