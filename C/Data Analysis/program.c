@@ -20,6 +20,8 @@ int main(int argc, char** argv) {
         exit(1);
     }
     DownloadData(result, 0);
+    free(result);
+    PrintData(result);
     
 
     // Code for multiple queries
@@ -51,6 +53,7 @@ int main(int argc, char** argv) {
             exit(1);
         }
         DownloadData(result, 1);
+        free(result);
     }
 
     */
